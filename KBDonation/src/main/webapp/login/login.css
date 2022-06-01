@@ -1,0 +1,115 @@
+:root {
+    --text-color: #f0f4f5;
+    --background-color: #263343;
+    --accent-color: lightpink;
+}
+
+body {
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.section {
+    /* 이친구가 부모라는사실을 잊지말아요~ */
+    display: flex;
+    /*
+        display: inline으로 작성하면 Default값 외에 아무것도 반영되어지지 않아유ㅠ
+    */
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    background-color: cadetblue;
+}
+
+.login__group {
+    width: 410px;
+    height: 675px;
+    padding: 40px 60px;
+    margin: 0 auto;
+    /* 기본으로 잡히는 margin값이 있음! */
+    background-color: #f0f4f5;
+}
+
+.login__title {
+    margin-bottom: 26px;
+}
+
+.login__set {
+    display: inline-block;
+    width: 410px;
+    height: 22px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.login__input__ID , .login__input__PWD {
+    width: 410px;
+    height: 47px;
+    font-size: 20px;
+    margin-bottom: 30px;
+    padding: 0;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid #313030;
+}
+
+.id__save__box label>input {
+    transform:scale(140%) ;
+    padding-top: 10px;
+}
+
+.id__save__box label>b{
+    padding-left: 7px;
+    font-size: 18px;
+}
+
+.login__sub{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.login__sub > input{
+    width: 360px;
+    height: 60px;
+    padding: 16px 20px;
+    font-size: 28px;
+    color: #f9fbe7;
+    border: 0;
+    border-radius: 7px;
+    background-color: cornflowerblue;
+}
+
+.login__errmsg {
+    color: darkred;
+    font-size: 20px;
+}
+
+.find__menu {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    justify-content: center;
+}
+
+.find__menu > li{
+    display: flex;
+    padding: 10px 35px;
+}
+
+.find__menu li > a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #82ada9;
+}
+
+.SNS > ul {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    justify-content: space-between;
+}

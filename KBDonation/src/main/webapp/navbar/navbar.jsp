@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/navbar/navbar.css">
+    <link href="../IconLogo.png" rel="shortcut icon" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
@@ -14,8 +15,8 @@
 <body>
     <nav class="navbar">
         <div class="navbar__logo">
-            <i class="fa-solid fa-seedling"></i>
-            <a href="${pageContext.request.contextPath}/index.jsp">KBDontaion</a>
+            <img alt="EarthFunding" src="${pageContext.request.contextPath}/IconLogo.png">
+            <a href="${pageContext.request.contextPath}/index.jsp">EarthFunding</a>
         </div>
 
         <ul class="navbar__menu">
@@ -30,12 +31,12 @@
             <%
                 if (session.getAttribute("UserID") == null) {
             %>
-            <li><i class="fa-solid fa-arrow-right-to-bracket"><a href="${pageContext.request.contextPath}/login/login.jsp">로그인</a></i></li>
-            <li><i class="fa-solid fa-file-signature"><a href="#">회원가입</a></i></li>
+            <li><i class="fa-solid fa-arrow-right-to-bracket"></i><a href="${pageContext.request.contextPath}/login/login.jsp">로그인</a></li>
+            <li><i class="fa-solid fa-file-signature"></i><a href="#">회원가입</a></li>
             <%
                 } else {
             %>
-            <li><%= session.getAttribute("UserName")%>님 함께해요!🍀</li>
+            <li><%= session.getAttribute("UserName")%>님 함께해요!</li>
             <li><a href="${pageContext.request.contextPath}/login/logout.jsp">로그아웃</a></li>
             <%
                 }

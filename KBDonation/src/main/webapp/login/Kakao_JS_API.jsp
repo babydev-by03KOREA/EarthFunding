@@ -16,25 +16,9 @@
                 Kakao.API.request({
                     url: '/v2/user/me',
                     success: function(res){
-                        /* console.log(res);
-                        console.log(res.id);
-                        console.log(res.kakao_account);
-                        console.log(JSON.stringify(res.properties.nickname));
-                        console.log(JSON.stringify(res.kakao_account.email));
-                        console.log(JSON.stringify(res.kakao_account.gender));
-                        console.log(JSON.stringify(res.kakao_account.birthday)); */
-                        /* const id = res.id;
-                        const email = res.kakao_account.email;
-                        const image = res.properties.profile_image;
-                        const name = res.properties.nickname;
-                        const html = "<br/>" + email + "<br/>" +
-                            name + "<br/>" +
-                            "<img src =' " + image + " '>";
-
-                        $('body').append(html); */
                         $.ajax({
-	                        	url:"<%=request.getContextPath()%>/KakaoLogin",
-	                            data:{"id":res.id, "name":JSON.stringify(res.properties.nickname)},
+	                        	url:"<%=request.getContextPath()%>/KakaoLogin.do",
+	                            data:{"id":res.id, "name":JSON.stringify(res.properties.nickname), "gender":JSON.stringify(res.properties.gender)},
 	                            Type:"post",
 	                            success:function(data){
                                 //성공적으로 하고나면 이동할 url

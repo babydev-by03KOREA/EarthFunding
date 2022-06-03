@@ -111,5 +111,10 @@ body {
     display: flex;
     list-style: none;
     padding-left: 0;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.SNS__Kakao {
+	width: 280px;
+	height: 70px;
 }

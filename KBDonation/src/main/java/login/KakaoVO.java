@@ -1,34 +1,34 @@
 package login;
 
 public class KakaoVO {
-	private static String ID;
-	private static String PWD;
-	private static String Name;
+	private String ID;
+	private String PWD;
+	private String Name;
 //	private String Gender;
 //	private String Address;
 //	private String Birth;
 //	private String Email;
 //	private String Phone;
-	
-	
-	public static String getID() {
+	public String getID() {
 		return ID;
 	}
 	public void setID(String iD) {
 		ID = iD;
 	}
-	public static String getPWD() {
+	public String getPWD() {
 		return PWD;
 	}
 	public void setPWD(String pWD) {
 		PWD = pWD;
 	}
-	public static String getName() {
+	public String getName() {
 		return Name;
 	}
 	public void setName(String name) {
 		Name = name;
 	}
+	
+	
 //	public String getGender() {
 //		return Gender;
 //	}

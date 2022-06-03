@@ -22,56 +22,36 @@ public class KakaoDAO{
     }
 
 
-	public void KakaoJoin(KakaoVO data) {
-		Connection con = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        String sql;
-        sql = "INSERT INTO KBUSERKakaoTest VALUES(?,?,?)";
-        try{
-            // dataSource로 부터 connection을 가져옴
-            con = dataSource.getConnection();
-            pstmt = con.prepareStatement(sql);
-            pstmt.setString(1,data.getID());
-            pstmt.setString(2,data.getName());
-            pstmt.setString(3,data.getPWD());
-//            pstmt.setString(4,data.getGender());
-//            pstmt.setString(5,data.getAddress());
-//            pstmt.setString(6,data.getPhone());
-//            pstmt.setString(7,data.getBirth());
-//            pstmt.setString(8,data.getEmail());
-            pstmt.executeUpdate();
-        }catch (Exception e2){
-            System.out.println("You're Login Kakao was Denied for "+e2);
-        }finally {
-            try {
-                if (con != null) con.close();
-                if (pstmt != null) pstmt.close();
-                if (rs != null) rs.close();
-            } catch (SQLException se){
-                se.printStackTrace();
-            }
-        }
-        
-    }
-	
-	public KakaoVO getKakaoLogin(String ID){
+	public int getKakaoLogin(String id, String name){
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         String sql;
-        KakaoVO kuv = new KakaoVO();
-        sql = "SELECT * FROM KBUserKakaoTest WHERE ID = ?";
+        KakaoVO kvo = new KakaoVO();
+        int ok = 0;
         try{
             // dataSource로 부터 connection을 가져옴
             con = dataSource.getConnection();
+            sql = "SELECT * FROM KBUserKakaoTest WHERE ID = ?";
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, ID);
+            pstmt.setString(1, id);
             rs = pstmt.executeQuery();
             if (rs.next()){
-            	kuv.setID(rs.getString("ID").trim());
-                kuv.setName(rs.getString("Name").trim());
+            	kvo.setID(rs.getString("id"));            	
+            	kvo.setName(rs.getString("name"));
+            	System.out.println(rs.getString(1));
+            	System.out.println(id);
+            	System.out.println(rs.getString(1).equals(id));
+            	if(rs.getString(1).equals(id) == true) {
+                	System.out.println("입력된 값과 일치함");
+            		ok = 1;
+                } else {
+                	System.out.println("회원가입 필요");
+                	ok = 2;
+                }
             }
+            
+            System.out.println("ID 확인처리 완료");
         }catch (Exception e2){
             System.out.println("You're Login Java was Denied for "+e2);
         }finally {
@@ -83,8 +63,48 @@ public class KakaoDAO{
                 se.printStackTrace();
             }
         }
-        return kuv;
+        return ok;
     }
+	
+	public KakaoVO KakaoJoin(KakaoVO data) {
+		Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql;
+        KakaoVO kvo = new KakaoVO();
+        try{
+            // dataSource로 부터 connection을 가져옴
+            con = dataSource.getConnection();
+            sql = "INSERT INTO KBUSERKakaoTest VALUES(?,?,?)";
+            pstmt = con.prepareStatement(sql);
+            System.out.println("DAO가입 처리중..");
+            pstmt.setString(1, kvo.getID());
+            pstmt.setString(2, kvo.getName());
+            pstmt.setString(3, kvo.getPWD());
+            pstmt.executeUpdate(sql);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+            	kvo.setID(rs.getString("ID"));
+            	kvo.setName(rs.getString("Name"));
+            	System.out.println("ResultSet 처리 완료.");
+            }
+        }catch (Exception e2){
+            System.out.println("You're Login Kakao was Denied for "+e2);
+        }finally {
+            try {
+                if (con != null) con.close();
+                if (pstmt != null) pstmt.close();
+                if (rs != null) rs.close();
+            } catch (SQLException se){
+                se.printStackTrace();
+            }
+            
+        }
+        return kvo;
+        
+    }
+	
+	
 
 }
 

@@ -1,14 +1,14 @@
 :root {
-    --text-color: #f0f4f5;
-    --background-color: #263343;
-    --accent-color: lightpink;
+    --text-color: #c0c8ca;
+    --background-color: #141922;
+    --accent-color: #090c0f;
 }
 
 body {
     margin: 0;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'DungGeunMo';
 }
-
+/* 자간 크기 늘리기 */
 a {
     text-decoration: none;
     color: var(--text-color);
@@ -20,15 +20,22 @@ a {
     align-items: center;
     background-color: var(--background-color);
     padding: 8px 12px;
+    padding: 8px 12px;
 }
 
 .navbar__logo {
-    font-size: 24px;
-    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.navbar__logo i {
-    color: greenyellow;
+.navbar__logo img{
+	width: 32px;
+	height: 32px;
+}
+
+.navbar__logo a {
+    font-size: 25px;
 }
 
 .navbar__menu {
@@ -42,8 +49,12 @@ a {
 }
 
 .navbar__menu li:hover {
-    background-color: var(--accent-color) ;
+    background-color: var(--accent-color);
     border-radius: 4px;
+}
+
+.navbar__menu li > a {
+    font-size: 20px;
 }
 
 .navbar__icons {
@@ -51,6 +62,7 @@ a {
     color: var(--text-color);
     display: flex;
     padding-left: 0;
+    
 }
 
 .navbar__icons li {

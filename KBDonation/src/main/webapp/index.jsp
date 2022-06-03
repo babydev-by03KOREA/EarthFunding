@@ -1,13 +1,17 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>환영합니다!</title>
-    <link href="IconLogo.png" rel="shortcut icon" type="image/x-icon">
-  </head>
-  <body>
-    <jsp:include page="/navbar/navbar.jsp"></jsp:include>
-    <article>
-      <h1>메인화면입니다.</h1>
-    </article>
-  </body>
+<head>
+<meta charset="UTF-8">
+<link href="./IconLogo.png" rel="shortcut icon" type="image/x-icon">
+<title>환영합니다!</title>
+</head>
+<body>
+	<jsp:include page="./navbar/navbar.jsp"></jsp:include>
+	<article>
+	<h2>/index.do</h2>
+	</article>
+	<jsp:include page="./footer/footer.jsp"></jsp:include>
+</body>
 </html>

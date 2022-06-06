@@ -1,6 +1,6 @@
 :root {
     --text-color: #f0f4f5;
-    --background-color: #263343;
+    --background-color: #64a0a0;
     --accent-color: lightpink;
 }
 
@@ -20,7 +20,7 @@ body {
     margin: 0 auto;
     justify-content: center;
     align-items: center;
-    background-color: cadetblue;
+    background-color: var(--background-color);
 }
 
 .login__group {

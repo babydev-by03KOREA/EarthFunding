@@ -34,22 +34,25 @@ public class KakaoLogin extends HttpServlet {
 	        System.out.println(PWD);
 //	        System.out.println(Gender);
 	        
-	        KakaoDAO kdao = new KakaoDAO();	
-	        KakaoVO data = new KakaoVO();
-	        int result = kdao.getKakaoLogin(id, name);
+	        
+	        
+	        String vname = names[1];
+	        KakaoDAO kdao = new KakaoDAO();
+	        int result = kdao.getKakaoLogin(id, vname);
 	        
 	        System.out.println(result);
 	        // 로그인 성공여부
 	        if(result == 1) {
 	        	System.out.println("가입이 완료된 사용자 처리");
 	        	session = request.getSession();
-		        session.setAttribute(data.getID(),"UserID");
-		        session.setAttribute(data.getName(),"UserName");
+		        session.setAttribute("UserID", new String(id));
+		        session.setAttribute("UserName", new String(names[1]));
 		        System.out.println("---------------------------\n");
 	        } else if (result == 2) {
-	        	System.out.println("회원가입 처리중..");	        	
+	        	System.out.println("회원가입 처리중..");
+	        	KakaoVO data = new KakaoVO();
 	        	data.setID(id);
-	        	data.setName(names[1]);
+	        	data.setName(vname);
 	        	data.setPWD(PWD);
 	        	kdao.KakaoJoin(data);
 	        	System.out.println("---------------------------\n");

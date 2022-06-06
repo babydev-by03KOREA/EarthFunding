@@ -22,12 +22,12 @@ public class KakaoDAO{
     }
 
 
-	public int getKakaoLogin(String id, String name){
+	public int getKakaoLogin(String id, String vname){
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         String sql;
-        KakaoVO kvo = new KakaoVO();
+//        KakaoVO kvo = new KakaoVO();
         int ok = 0;
         try{
             // dataSource로 부터 connection을 가져옴
@@ -36,22 +36,25 @@ public class KakaoDAO{
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, id);
             rs = pstmt.executeQuery();
-            if (rs.next()){
-            	kvo.setID(rs.getString("id"));            	
-            	kvo.setName(rs.getString("name"));
-            	System.out.println(rs.getString(1));
-            	System.out.println(id);
-            	System.out.println(rs.getString(1).equals(id));
-            	if(rs.getString(1).equals(id) == true) {
+            if(rs.next()) {
+//            	kvo.setID(rs.getString("id"));            	
+//            	kvo.setName(rs.getString("name"));
+            	System.out.println(rs.getString("name"));
+            	System.out.println(vname);
+            	System.out.println("입력된값과 DB값 비교값");
+            	System.out.println(rs.getString("name").equals(vname));
+            	boolean isT = rs.getString("name").equals(vname);
+            	System.out.println(isT);
+            	if(isT = true) {
                 	System.out.println("입력된 값과 일치함");
             		ok = 1;
-                } else {
+                } 
+            	else if (isT = false){
                 	System.out.println("회원가입 필요");
                 	ok = 2;
                 }
             }
-            
-            System.out.println("ID 확인처리 완료");
+           
         }catch (Exception e2){
             System.out.println("You're Login Java was Denied for "+e2);
         }finally {
@@ -66,28 +69,30 @@ public class KakaoDAO{
         return ok;
     }
 	
-	public KakaoVO KakaoJoin(KakaoVO data) {
+	public void KakaoJoin(KakaoVO data) {
 		Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
+//        KakaoVO kvo = new KakaoVO();
         String sql;
-        KakaoVO kvo = new KakaoVO();
         try{
             // dataSource로 부터 connection을 가져옴
             con = dataSource.getConnection();
             sql = "INSERT INTO KBUSERKakaoTest VALUES(?,?,?)";
             pstmt = con.prepareStatement(sql);
             System.out.println("DAO가입 처리중..");
-            pstmt.setString(1, kvo.getID());
-            pstmt.setString(2, kvo.getName());
-            pstmt.setString(3, kvo.getPWD());
-            pstmt.executeUpdate(sql);
-            rs = pstmt.executeQuery();
-            while (rs.next()){
-            	kvo.setID(rs.getString("ID"));
-            	kvo.setName(rs.getString("Name"));
-            	System.out.println("ResultSet 처리 완료.");
-            }
+            System.out.println(data.getID());
+            System.out.println(data.getName());
+            System.out.println(data.getPWD());
+            pstmt.setString(1, data.getID());
+            pstmt.setString(2, data.getName());
+            pstmt.setString(3, data.getPWD());
+            pstmt.executeUpdate();
+//            rs = pstmt.executeQuery();
+//            while (rs.next()){
+//            	kvo.setID(rs.getString("ID"));
+//            	kvo.setName(rs.getString("Name"));
+//            }
         }catch (Exception e2){
             System.out.println("You're Login Kakao was Denied for "+e2);
         }finally {
@@ -100,7 +105,6 @@ public class KakaoDAO{
             }
             
         }
-        return kvo;
         
     }
 	

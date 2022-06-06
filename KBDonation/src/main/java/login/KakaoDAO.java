@@ -1,3 +1,4 @@
+
 package login;
 
 import javax.naming.Context;
@@ -22,39 +23,40 @@ public class KakaoDAO{
     }
 
 
-	public int getKakaoLogin(String id, String vname){
+	public int getKakaoLogin(String id, String name){
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         String sql;
-//        KakaoVO kvo = new KakaoVO();
-        int ok = 0;
+		/* KakaoVO kvo = new KakaoVO(); */
+        int ok = 1;
         try{
             // dataSource로 부터 connection을 가져옴
             con = dataSource.getConnection();
             sql = "SELECT * FROM KBUserKakaoTest WHERE ID = ?";
             pstmt = con.prepareStatement(sql);
             pstmt.setString(1, id);
+            pstmt.executeUpdate();
             rs = pstmt.executeQuery();
-            if(rs.next()) {
-//            	kvo.setID(rs.getString("id"));            	
-//            	kvo.setName(rs.getString("name"));
-            	System.out.println(rs.getString("name"));
-            	System.out.println(vname);
-            	System.out.println("입력된값과 DB값 비교값");
-            	System.out.println(rs.getString("name").equals(vname));
-            	boolean isT = rs.getString("name").equals(vname);
-            	System.out.println(isT);
-            	if(isT = true) {
-                	System.out.println("입력된 값과 일치함");
-            		ok = 1;
-                } 
-            	else if (isT = false){
-                	System.out.println("회원가입 필요");
-                	ok = 2;
-                }
-            }
-           
+//            rs.next();
+//            System.out.println(rs.getString(1));
+//            if (rs.next()) {
+//				/*
+//				 * kvo.setID(rs.getString("id")); kvo.setName(rs.getString("name"));
+//				 */
+//            	System.out.println(rs.getString(1));
+//            	System.out.println(id);
+//            	System.out.println(rs.getString(1).equals(id));
+//            	if(rs.getString(1).equals(id) == true) {
+//                	System.out.println("입력된 값과 일치함");
+//            		ok = 1;
+//                } else {
+//                	System.out.println("회원가입 필요");
+//                	ok = 0;
+//                }
+//            
+//            System.out.println("ID 확인처리 완료");
+//            }
         }catch (Exception e2){
             System.out.println("You're Login Java was Denied for "+e2);
         }finally {
@@ -69,26 +71,24 @@ public class KakaoDAO{
         return ok;
     }
 	
-	public void KakaoJoin(KakaoVO data) {
+	public void KakaoJoin(String id, String name, String PWD) {
 		Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-//        KakaoVO kvo = new KakaoVO();
         String sql;
+//        KakaoVO kvo = new KakaoVO();
         try{
             // dataSource로 부터 connection을 가져옴
             con = dataSource.getConnection();
             sql = "INSERT INTO KBUSERKakaoTest VALUES(?,?,?)";
             pstmt = con.prepareStatement(sql);
             System.out.println("DAO가입 처리중..");
-            System.out.println(data.getID());
-            System.out.println(data.getName());
-            System.out.println(data.getPWD());
-            pstmt.setString(1, data.getID());
-            pstmt.setString(2, data.getName());
-            pstmt.setString(3, data.getPWD());
+            
+            pstmt.setString(1, id);
+            pstmt.setString(2, name);
+            pstmt.setString(3, PWD);
             pstmt.executeUpdate();
-//            rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
 //            while (rs.next()){
 //            	kvo.setID(rs.getString("ID"));
 //            	kvo.setName(rs.getString("Name"));
@@ -105,11 +105,11 @@ public class KakaoDAO{
             }
             
         }
+
         
     }
 	
-	
+	// 값이 넘어왔음 / 없는 사용자면 ResultSet에 담길 내용도 없음. 그렇기 때문에 0 에러가 발생하는게 맞음.
+	// ok에 1과 2 값 모두 넣어서 테스트 완료. -> 해당 returnal funcrtion 수정 필요.
 
 }
-
-

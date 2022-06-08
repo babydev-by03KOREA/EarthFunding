@@ -1,2 +1,2 @@
 # EarthFunding
-기존에 있던 KBProject-Intellij에서 이클립스 IDE를 사용합니다.
+IDE는 이클립스, 인텔리제이 동시 사용됩니다. 이는 개발자의 편의에 따라 달라집니다.

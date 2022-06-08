@@ -11,7 +11,7 @@
 <body>
 	<jsp:include page="./navbar/navbar.jsp"></jsp:include>
 	<article>
-
+		<h2><b>/index.do</b></h2>
 		<div class="MovementIMG">
 			<div class="section">
 			<input type="radio" name="slide" id="slide01" checked>

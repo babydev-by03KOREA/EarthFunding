@@ -1,5 +1,3 @@
-#!pip install PyMySQL mysql 설치
-
 # 출처:
 #       GHG_DATA : UNFCCC
 #       GTR_DATA : NASA
@@ -8,6 +6,7 @@
 import tensorflow as tf
 import numpy as np
 from tensorflow import keras
+
 
 GHG_D = 0.0063 #
 DL_Repeat = 100 #딥러닝 반복횟수 
@@ -85,5 +84,17 @@ for j in range(30):
 #print("최근 20년 사이 북극빙하면적 감소율:", t_train[29]/t_train[9]*100,"%")
 #print("최근 30년 사이 북극빙하면적 감소율:", t_train[29]/t_train[0]*100,"%")
 
+# 3.Myspl
 
+#import pymysql as ms
+
+#db = ms.connect(host="", port="", user="", passwd="", db="", charset="")
+#cursor = ms.cursor()
+#sql = """
+#            spl문 작성 
+#      """
+#cursor.execute(spl) #실행
+#
+#db.commit() #커밋
+#db.close() #종료
 
